@@ -40,9 +40,9 @@ def count_cuts(gh, path, ep):
 def build_html(ep, title, sub, cuts, gh, path, is_last=False):
     path = ep_path(ep, path)
     if title:
-        blog_title = "3분의 사치 · {}화 — {}".format(ep, title)
+        blog_title = "{}화 — {}".format(ep, title)
     else:
-        blog_title = "3분의 사치 · {}화".format(ep)
+        blog_title = "{}화".format(ep)
     imgs = "\n".join(IMG.format(gh=gh, path=path, ep=ep, n=i) for i in range(1, cuts + 1))
     if is_last:
         end_big, end_small = "완결", "그동안 봐주셔서 감사합니다"
