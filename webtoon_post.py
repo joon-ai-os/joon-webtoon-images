@@ -43,7 +43,6 @@ def build_html(ep, title, sub, cuts, gh, path, is_last=False):
         blog_title = "3분의 사치 · {}화 — {}".format(ep, title)
     else:
         blog_title = "3분의 사치 · {}화".format(ep)
-    head_title = title or "3분의 사치"
     imgs = "\n".join(IMG.format(gh=gh, path=path, ep=ep, n=i) for i in range(1, cuts + 1))
     if is_last:
         end_big, end_small = "완결", "그동안 봐주셔서 감사합니다"
@@ -52,17 +51,12 @@ def build_html(ep, title, sub, cuts, gh, path, is_last=False):
     body = """<!-- TITLE: {blog_title} -->
 <!-- KEYWORDS: 웹툰, 3분의사치, 로맨스웹툰, 신작웹툰 -->
 <div style="max-width:820px; margin:0 auto; background:#ffffff; font-family:'Nanum Gothic','맑은 고딕',sans-serif;">
-<div style="text-align:center; padding:24px 16px 16px;">
-<div style="font-size:23px; font-weight:800; color:#201e1d;">{head_title}</div>
-<div style="font-size:13px; color:#8a8178; margin-top:5px;">{sub}</div>
-</div>
 {imgs}
 <div style="text-align:center; padding:32px 16px 44px;">
 <div style="font-size:18px; font-weight:800; color:#201e1d;">{end_big}</div>
 <div style="font-size:13px; color:#8a8178; margin-top:6px;">{end_small}</div>
 </div>
-</div>""".format(blog_title=blog_title, head_title=head_title, sub=sub, imgs=imgs,
-                 end_big=end_big, end_small=end_small)
+</div>""".format(blog_title=blog_title, imgs=imgs, end_big=end_big, end_small=end_small)
     return blog_title, body
 
 
