@@ -26,6 +26,8 @@ HELP = (
     "• `자동 <이름>` / `수동 <이름>` — 게시 모드 변경\n"
     "• `이름변경 <옛이름> <새이름>` — 카테고리 이름 변경\n"
     "• `웹툰 <화번호> <제목>` — 웹툰 스크롤형 초안 등록\n"
+    "• `웹툰상태` — 웹툰 진행 상황(총 화수/게시 화)\n"
+    "• `웹툰총화수 <숫자>` — 총 화수 변경\n"
     "• `내아이디` — 내 Slack ID 확인\n"
     "• `도움말` — 이 안내"
 )
@@ -81,6 +83,12 @@ def parse(text):
     m = re.match(r"^이름변경\s+(\S+)\s+(.+)$", t)
     if m:
         return ("cmd", "blog_cat.py", ["rename", m.group(1), m.group(2).strip()])
+
+    if t in ("웹툰상태", "웹툰 상태"):
+        return ("cmd", "webtoon_cfg.py", ["status"])
+    m = re.match(r"^웹툰\s*총화수\s+(\d+)$", t)
+    if m:
+        return ("cmd", "webtoon_cfg.py", ["total", m.group(1)])
 
     m = re.match(r"^웹툰\s+(\d+)\s*화?\s+(.+)$", t)
     if m:
